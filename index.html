@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mus Pulcherrima · FTIC 2026</title>
+<meta name="description" content="Evaluation of the antidiabetic potential of ethanolic leaf extract of Kembang Merak (Caesalpinia pulcherrima) on blood glucose levels in mice. FTIC 2026, Team EE26-0029.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-900:#0f2e22; --green-800:#123d2d; --green-700:#1a4d39; --green-100:#e3ece6;
+  --cream:#fdf7ec; --card:#ffffff; --line:#eadfcb;
+  --gold:#f2c14e; --gold-soft:#f8dc8c; --rust:#c2410c;
+  --ink:#1c2420; --muted:#55615a;
+  --radius:14px; --shadow:0 1px 2px rgba(15,46,34,.06),0 8px 24px -12px rgba(15,46,34,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--cream);color:var(--ink);font:400 17px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,.display{font-family:"Bricolage Grotesque",Inter,sans-serif;font-weight:800;letter-spacing:-.01em;line-height:1.15}
+em.sp{font-style:italic}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:72px 0}
+.eyebrow{display:inline-block;font:700 12px/1 Inter;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);margin-bottom:12px}
+h2{font-size:clamp(28px,4vw,40px);color:var(--green-900);margin-bottom:20px}
+h3{font-size:21px;color:var(--green-900);margin-bottom:10px}
+p+p{margin-top:14px}
+.lead{font-size:19px;color:var(--muted);max-width:760px}
+
+/* top bar */
+.topbar{background:var(--green-900);color:#fff}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:18px;flex-wrap:wrap}
+.brand{font-family:"Bricolage Grotesque";font-weight:800;font-size:28px;color:var(--gold);letter-spacing:.01em}
+.logos{background:#fff;border-radius:12px;padding:8px 14px}
+.logos img{height:40px;width:auto}
+
+nav.sticky{position:sticky;top:0;z-index:20;background:rgba(18,61,45,.96);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.08)}
+nav.sticky ul{list-style:none;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:0 24px;max-width:1120px;margin:0 auto}
+nav.sticky ul::-webkit-scrollbar{display:none}
+nav.sticky a{display:block;padding:14px 14px;color:#d8e6dd;text-decoration:none;font:600 14px Inter;white-space:nowrap;border-bottom:3px solid transparent;transition:.2s}
+nav.sticky a:hover,nav.sticky a.active{color:#fff;border-color:var(--gold)}
+
+/* hero */
+.hero{background:var(--green-800);color:#fff;padding:72px 0 88px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(242,193,78,.18),transparent 70%)}
+.hero .tag{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:6px 14px;border-radius:999px;font:600 13px Inter;color:var(--gold-soft);margin-bottom:24px}
+.hero h1{font-size:clamp(30px,5vw,54px);max-width:960px}
+.hero h1 u{text-decoration-thickness:3px;text-underline-offset:6px}
+.hero p{margin-top:24px;color:#cfe0d6;max-width:720px;font-size:18px}
+.hero .cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 22px;border-radius:10px;font:700 15px Inter;text-decoration:none;transition:.2s}
+.btn.gold{background:var(--gold);color:var(--green-900)}
+.btn.gold:hover{background:var(--gold-soft)}
+.btn.ghost{border:1.5px solid rgba(255,255,255,.35);color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.08)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:8px 0 28px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 20px;text-align:center;box-shadow:var(--shadow)}
+.stat .num{font-family:"Bricolage Grotesque";font-weight:800;font-size:clamp(36px,5vw,52px);color:var(--rust);line-height:1}
+.stat .lbl{margin-top:10px;color:var(--muted);font-size:15px;line-height:1.45}
+
+/* abstract card */
+.abstract{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--gold);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow)}
+.kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.kw span{background:var(--green-100);color:var(--green-800);font:600 13px Inter;padding:6px 12px;border-radius:999px}
+
+/* background two-col */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.types{display:grid;gap:12px;margin-top:20px}
+.type{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.type b{flex:none;font-family:"Bricolage Grotesque";background:var(--green-800);color:var(--gold);border-radius:8px;padding:6px 10px;font-size:15px}
+.type small{display:block;color:var(--muted);font-size:14px;line-height:1.5}
+
+/* innovation band */
+.band{background:var(--green-800);color:#fff;border-radius:18px;padding:40px;text-align:center;font-size:clamp(18px,2.2vw,22px);line-height:1.6}
+.band strong{color:var(--gold)}
+
+/* method cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border-top:6px solid var(--green-800);border-radius:6px 6px var(--radius) var(--radius);padding:24px;box-shadow:var(--shadow)}
+.card ol{padding-left:20px;color:var(--muted);font-size:15px}
+.card li+li{margin-top:8px}
+.card p{color:var(--muted);font-size:15px}
+.formula{margin-top:28px;background:var(--card);border:1px dashed var(--green-700);border-radius:var(--radius);padding:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.formula div{font-size:15px}
+.formula code{display:block;margin-top:6px;font:600 15px/1.5 ui-monospace,Menlo,monospace;color:var(--green-800);background:var(--green-100);padding:10px 12px;border-radius:8px}
+
+.gallery{display:grid;grid-template-columns:1fr 1fr 1fr 1.6fr;gap:14px;margin-top:32px}
+.gallery figure{margin:0}
+.gallery img{width:100%;height:300px;object-fit:cover;border-radius:10px;border:3px solid var(--green-800)}
+.gallery figcaption{text-align:center;font:700 13px/1.35 Inter;margin-top:8px}
+
+/* results */
+.chart-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+.chart-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.chart-head h3{margin:0;font-family:Inter;font-weight:700;font-size:17px}
+.legend{display:flex;gap:18px;font-size:14px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:6px;vertical-align:-2px}
+.chart{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;height:300px;border-bottom:2px solid var(--ink);padding:0 4%}
+.grp{display:flex;align-items:flex-end;justify-content:center;gap:8px}
+.bar{width:min(64px,40%);background:var(--green-800);border-radius:6px 6px 0 0;position:relative;height:0;transition:height 1.1s cubic-bezier(.2,.8,.2,1)}
+.bar.k{background:var(--gold)}
+.bar span{position:absolute;top:-24px;left:50%;transform:translateX(-50%);font:700 14px Inter;opacity:0;transition:opacity .4s .9s}
+.chart.on .bar span{opacity:1}
+.xl{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:10px 4% 0;text-align:center;font-weight:600;font-size:15px}
+table{width:100%;border-collapse:collapse;margin-top:28px;font-size:15px;background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+th,td{padding:12px 16px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+thead th{background:var(--green-800);color:#fff;font-weight:600}
+td.down{color:var(--green-700);font-weight:700}
+td.up{color:var(--rust);font-weight:700}
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.hl{background:var(--green-100);border-radius:var(--radius);padding:22px}
+.hl .display{font-size:30px;color:var(--green-800)}
+.hl p{font-size:14px;color:var(--muted);margin-top:6px}
+
+/* SDG */
+.sdg{display:flex;gap:32px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:var(--shadow)}
+.sdg img{width:150px;flex:none;border-radius:6px}
+
+/* refs */
+.refs{columns:2;column-gap:40px;font-size:14px;color:var(--muted)}
+.refs li{break-inside:avoid;margin:0 0 10px 18px}
+
+/* footer */
+footer{background:var(--green-900);color:#fff;padding:56px 0 0;margin-top:40px;overflow:hidden}
+footer .wrap{display:grid;grid-template-columns:1.3fr 1fr auto;gap:32px;align-items:end}
+.team-no{color:var(--gold);font:700 14px Inter;letter-spacing:.14em}
+footer h2{color:#fff;font-size:36px;margin:6px 0 4px}
+footer .school{font-size:18px;font-weight:500}
+footer .members{margin-top:14px;color:#c4d6cb;font-size:15px}
+footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px}
+.mouse{align-self:end;max-width:260px;margin:0 auto;transform:translateY(8px)}
+.qr{background:#fff;border:4px solid var(--gold);border-radius:16px;padding:10px;width:160px;margin-bottom:56px}
+.qr + small,.qrbox small{display:block;text-align:center;color:var(--gold);font:700 13px Inter;margin-top:8px}
+.qrbox{margin-bottom:56px}
+.qrbox .qr{margin-bottom:0}
+.legal{border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:13px;color:#8fa79a;padding:16px 24px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.bar{transition:none}html{scroll-behavior:auto}}
+
+@media (max-width:860px){
+  section{padding:56px 0}
+  .cols,.cards,.highlights{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr 1fr}
+  .gallery img{height:auto;aspect-ratio:3/4}
+  .refs{columns:1}
+  footer .wrap{grid-template-columns:1fr;text-align:center;justify-items:center}
+  footer .mentor{margin-bottom:0}
+  .qrbox{margin-bottom:0}
+  .mouse{order:3;max-width:200px}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .stats{grid-template-columns:1fr}
+  .logos img{height:30px}
+  .brand{font-size:22px}
+  .sdg{flex-direction:column;text-align:center;padding:24px}
+  .abstract,.band{padding:24px}
+  .chart{height:240px;gap:10px;padding:0}
+  .xl{gap:10px;padding:10px 0 0;font-size:13px}
+  .bar span{font-size:12px}
+  th,td{padding:10px 8px;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">FTIC 2026</div>
+    <div class="logos"><img src="assets/logos.png" alt="FTIC, Universitas Katolik Widya Mandala Surabaya and Mawar Sharon Christian School logos"></div>
+  </div>
+</header>
+
+<nav class="sticky" aria-label="Sections">
+  <ul>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#innovation">Innovation</a></li>
+    <li><a href="#method">Methodology</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#sdg">SDG</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="tag">● Team EE26-0029 · Mus Pulcherrima</span>
+    <h1>Evaluation of the Antidiabetic Potential of Ethanolic Leaf Extract of Kembang Merak (<u><em class="sp">Caesalpinia pulcherrima</em></u>) on Blood Glucose Levels in Mice (<u><em class="sp">Mus musculus</em></u>)</h1>
+    <p>A locally available ornamental plant, tested as a low-cost herbal approach to lowering, and keeping down, blood glucose.</p>
+    <div class="cta">
+      <a class="btn gold" href="#results">See the results</a>
+      <a class="btn ghost" href="#method">How we did it</a>
+    </div>
+  </div>
+</section>
+
+<section id="abstract">
+  <div class="wrap rv">
+    <span class="eyebrow">Abstract</span>
+    <h2>Antioxidant and Antidiabetic Potential of <em class="sp">C. pulcherrima</em> Leaf Extract</h2>
+    <div class="abstract">
+      <p>Between 1980 and 2014, the number of cases of diabetes mellitus increased from approximately 108 million to 422 million. Plant-derived compounds have attracted research interest due to their antioxidant and antidiabetic potential, including those in <em>Caesalpinia pulcherrima</em> (kembang merak). This study aimed to investigate the potential antidiabetic effect of <em>C. pulcherrima</em> ethanolic leaf extract by observing changes in blood glucose levels in mice.</p>
+      <p><em>C. pulcherrima</em> leaves were dried, ground, and macerated to obtain an ethanolic leaf extract. Eight male mice were divided into two groups of four. Group A received the extract via their drinking water at a dosage of 200 mg/kg BW, while Group B served as the control. Treatments were given for seven days. Blood glucose levels were measured before, after, and seven days post-treatment, and the results were analysed descriptively.</p>
+      <p>In Group A, treatment lowered average blood glucose from <strong>159.25 mg/dL</strong> to <strong>114.75 mg/dL</strong> and sustained this reduction at <strong>118.75 mg/dL</strong> seven days post-treatment (H+7). Group B also showed a reduction, from 170.5 mg/dL to 131 mg/dL, but rebounded to 152.75 mg/dL by H+7. By combating diabetes, this study supports the United Nations’ 3rd Sustainable Development Goal, good health and well-being. In conclusion, <em>C. pulcherrima</em> leaf extract decreased blood glucose and maintained the lower level after treatment ended.</p>
+      <div class="kw"><span>Caesalpinia pulcherrima</span><span>Diabetes mellitus</span><span>Blood glucose</span><span>Ethanolic extract</span><span>Mus musculus</span><span>SDG 3</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="problem" style="padding-top:0">
+  <div class="wrap rv">
+    <span class="eyebrow">The problem</span>
+    <h2>Diabetes is rising, and treatment is a lifelong burden</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">+72%</div><div class="lbl">rise in diabetes cases in Indonesia over 24 years</div></div>
+      <div class="stat"><div class="num">20.4M</div><div class="lbl">cases among adults aged 20–79 in Indonesia (2024)</div></div>
+      <div class="stat"><div class="num">422M</div><div class="lbl">cases worldwide in 2014, up from 108 million in 1980</div></div>
+    </div>
+    <p class="lead">Uncontrolled diabetes can lead to heart disease, kidney failure and nerve damage. Conventional drugs are often expensive, taken for life, and carry side effects such as hypoglycaemia and strain on the liver and kidneys.</p>
+  </div>
+</section>
+
+<section id="background" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <span class="eyebrow">Background</span>
+    <h2>Why look to a garden plant?</h2>
+    <div class="cols">
+      <div class="rv">
+        <p>Diabetes mellitus (DM) is a heterogeneous group of metabolic disorders defined by abnormally high blood glucose, a state of hyperglycaemia in either a fasting or post-meal state (Alam et al., 2014).</p>
+        <div class="types">
+          <div class="type"><b>T1DM</b><div>The body cannot produce enough insulin and needs insulin replacement.<small>~5–10% of cases, typically seen in childhood.</small></div></div>
+          <div class="type"><b>T2DM</b><div>Mainly insulin resistance, sometimes with insufficient insulin production.<small>The most common form: ~90–95% of cases.</small></div></div>
+          <div class="type"><b>GDM</b><div>Develops during pregnancy in women with no prior diabetes.<small>Affects ~5–15% of pregnancies; raises later T2DM risk.</small></div></div>
+        </div>
+        <p style="margin-top:20px">Adult prevalence rose from 4.7% to 8.5% between 1980 and 2014 (Alam et al., 2021), and the IDF projected 552 million cases by 2030 (Alam et al., 2014). Poorly controlled diabetes contributes to cardiovascular disease, renal failure, blindness, hypertension and neuropathy.</p>
+      </div>
+      <div class="rv">
+        <p>Current treatments, insulin and oral hypoglycaemic agents, work by raising insulin secretion, enhancing glucose uptake or reducing gluconeogenesis. They may not fully restore long-term glucose homeostasis, can cause hypoglycaemia, gastrointestinal, liver, kidney and cardiovascular problems, and some require lifelong use (Deshmukh &amp; Jain, 2021; Dwivedi &amp; Pandey, 2020).</p>
+        <p>The WHO estimates that many people in developing countries still rely on plant-based traditional medicine. Medicinal plants contain secondary metabolites, such as alkaloids, phenolics, steroids, lignans and glycosides, with antioxidant, anti-inflammatory and antidiabetic activity, including effects on insulin secretion and sensitivity (Tran et al., 2020).</p>
+        <p><strong><em>Caesalpinia pulcherrima</em> L. Swartz</strong>, the peacock flower or Barbados Pride, grows widely across tropical regions including Indonesia. It contains glycosides, rotenoids, isoflavones, flavanones, chalcones, flavanols, flavones, sterols and tannins, and has reported antimicrobial, anti-inflammatory, antioxidant, anticancer and antidiabetic activity (Sangeetha et al., 2025). Its extract has shown antioxidant activity with an IC<sub>50</sub> of 45.63 µg/mL (Faloye et al., 2022), and its isoflavones inhibit aldose reductase, an enzyme linked to diabetic complications (Kumar et al., 2015).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="innovation">
+  <div class="wrap rv">
+    <span class="eyebrow">Innovation</span>
+    <h2>A herbal alternative that grows on our streets</h2>
+    <div class="band">An ethanolic extract of <strong>kembang merak leaves</strong>, an ornamental plant found throughout Indonesia, as a cheap and accessible herbal alternative to help <strong>lower and maintain</strong> blood glucose levels.</div>
+  </div>
+</section>
+
+<section id="method" style="padding-top:24px">
+  <div class="wrap">
+    <span class="eyebrow">Methodology</span>
+    <h2>From leaf to lab result</h2>
+    <div class="cards rv">
+      <div class="card">
+        <h3>Extraction</h3>
+        <ol>
+          <li>500 g of leaves dried cold (chiller) for 7 days, then ground into powder.</li>
+          <li>Macerated in 3 L of 96% ethanol (1:6) for 4 days, then filtered.</li>
+          <li>Ethanol evaporated in a water bath at 50–70 °C to obtain a concentrated extract.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Test animals</h3>
+        <ol>
+          <li>8 male mice (<em>Mus musculus</em>) fed ad libitum for 1 week before treatment until fasting glucose reached 150–170 mg/dL.</li>
+          <li>Split into 2 groups of 4 and weighed to calculate the dose. Mean body weight: 24.72 g (treatment), 26.76 g (control).</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Treatment &amp; testing</h3>
+        <p><strong>Group A:</strong> extract at 200 mg/kg BW in drinking water (water dispenser).<br><strong>Group B (control):</strong> filtered water only.<br>Each group received 175 mL over 7 days. Fasting blood glucose was measured before, after, and 7 days post-treatment (H+7), and analysed descriptively.</p>
+      </div>
+    </div>
+
+    <div class="formula rv">
+      <div><strong>Dose per animal</strong><code>200 mg/kg × 0.0247 kg = 4.9435 mg</code></div>
+      <div><strong>Solution concentration</strong><code>4.9435 mg ÷ 175 mL ≈ 0.028 mg/mL</code></div>
+    </div>
+
+    <div class="gallery rv">
+      <figure><img src="assets/filtration.jpg" alt="Filtering the macerated leaf extract through a funnel" loading="lazy"><figcaption>Filtering the macerate</figcaption></figure>
+      <figure><img src="assets/extract.jpg" alt="Concentrated extract in a test tube after evaporation" loading="lazy"><figcaption>Concentrated extract after evaporation</figcaption></figure>
+      <figure><img src="assets/solution.jpg" alt="Beaker of extract solution" loading="lazy"><figcaption>Extract solution, 200 mg/kg BW</figcaption></figure>
+      <figure><img src="assets/weigh.jpg" alt="Weighing a mouse on a lab balance" loading="lazy"><figcaption>Weighing the mice</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="results" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <span class="eyebrow">Results &amp; novelty</span>
+    <h2>The drop held for 7 days after treatment</h2>
+    <p class="lead" style="margin-bottom:28px">Blood glucose in the extract group <strong>stayed low 7 days after treatment ended</strong>, while the control group climbed back up. The material is local, cheap, and easy to give in drinking water.</p>
+
+    <div class="chart-card rv">
+      <div class="chart-head">
+        <h3>Mean blood glucose (mg/dL)</h3>
+        <div class="legend"><span><i style="background:var(--green-800)"></i>Extract</span><span><i style="background:var(--gold)"></i>Control</span></div>
+      </div>
+      <div class="chart" id="chart">
+        <div class="grp"><div class="bar" data-v="159.25"><span>159</span></div><div class="bar k" data-v="170.5"><span>171</span></div></div>
+        <div class="grp"><div class="bar" data-v="114.75"><span>115</span></div><div class="bar k" data-v="131"><span>131</span></div></div>
+        <div class="grp"><div class="bar" data-v="118.75"><span>119</span></div><div class="bar k" data-v="152.75"><span>153</span></div></div>
+      </div>
+      <div class="xl"><span>Before</span><span>After</span><span>7 days later</span></div>
+    </div>
+
+    <div class="rv" style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Group</th><th>Before</th><th>After 7 days</th><th>H+7</th><th>H+7 vs. before</th></tr></thead>
+      <tbody>
+        <tr><td>A · Extract 200 mg/kg</td><td>159.25</td><td>114.75</td><td>118.75</td><td class="down">−25.4%</td></tr>
+        <tr><td>B · Control</td><td>170.50</td><td>131.00</td><td>152.75</td><td>−10.4%</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="highlights rv">
+      <div class="hl"><div class="display">−44.5</div><p>mg/dL drop in the extract group during treatment</p></div>
+      <div class="hl"><div class="display">+4.0</div><p>mg/dL change in the extract group from end of treatment to H+7</p></div>
+      <div class="hl"><div class="display">+21.75</div><p>mg/dL rebound in the control group over the same period</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sdg">
+  <div class="wrap rv">
+    <div class="sdg">
+      <img src="assets/sdg3.png" alt="UN Sustainable Development Goal 3: Good Health and Well-being">
+      <div>
+        <span class="eyebrow">Sustainable Development Goals</span>
+        <h2 style="margin-bottom:12px">Supporting SDG 3</h2>
+        <p>This project supports SDG 3 (<em>Good Health and Well-being</em>), which aims to reduce premature deaths from non-communicable diseases by one third by 2030, through an affordable alternative approach to diabetes control. It draws on Indonesia’s local biodiversity for a sustainable health solution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="references" style="padding-top:0">
+  <div class="wrap rv">
+    <span class="eyebrow">References</span>
+    <ul class="refs">
+      <li>Alam et al. (2014)</li>
+      <li>Alam et al. (2021)</li>
+      <li>Deshmukh &amp; Jain (2021)</li>
+      <li>Dwivedi &amp; Pandey (2020)</li>
+      <li>Faloye et al. (2022)</li>
+      <li>Ighodaro &amp; Ogbeide (2020)</li>
+      <li>Koganuramath et al. (2025)</li>
+      <li>Kumar et al. (2015)</li>
+      <li>Sangeetha et al. (2025)</li>
+      <li>Tran et al. (2020)</li>
+    </ul>
+  </div>
+</section>
+
+<footer id="team">
+  <div class="wrap">
+    <div>
+      <div class="team-no">TEAM NO. EE26-0029</div>
+      <h2>Mus Pulcherrima</h2>
+      <div class="school">SMA Mawar Sharon Christian School</div>
+      <div class="members">Darlene Yeung · Josh Wijaya<br>Nathan Sidauruk · Claire Yulimtan</div>
+      <div class="mentor">Supervisor: Gabriella Allycia Kurniawan</div>
+    </div>
+    <img class="mouse" src="assets/mouse.png" alt="Illustration of a mouse">
+    <div class="qrbox"><img class="qr" src="assets/qr.png" alt="QR code linking to the explainer video"><small>Watch the explainer video</small></div>
+  </div>
+  <div class="legal">FTIC 2026 · Universitas Katolik Widya Mandala Surabaya</div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const chart=document.getElementById('chart');
+new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){chart.classList.add('on');chart.querySelectorAll('.bar').forEach(b=>b.style.height=(b.dataset.v/180*100)+'%');o.disconnect()}},{threshold:.3}).observe(chart);
+const links=[...document.querySelectorAll('nav.sticky a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+addEventListener('scroll',()=>{let i=secs.findLastIndex(s=>s.getBoundingClientRect().top<120);links.forEach((l,j)=>l.classList.toggle('active',j===i))},{passive:true});
+</script>
+</body>
+</html>
