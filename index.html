@@ -89,18 +89,9 @@ nav.sticky a:hover,nav.sticky a.active{color:#fff;border-color:var(--gold)}
 .trend text{font-family:Inter;fill:var(--muted)}
 .prev{display:flex;gap:10px;margin-top:10px;font-size:14px;color:var(--muted);align-items:center;flex-wrap:wrap}
 .prev b{font-family:"Bricolage Grotesque";font-size:22px;color:var(--rust)}
-.icons{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.ic{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 8px;text-align:center;font:600 13px/1.3 Inter}
-.ic svg{width:38px;height:38px;margin:0 auto 8px;display:block;stroke:var(--rust);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch}
-.vs .side{background:#fff;border-radius:12px;padding:18px;border:1px solid var(--line)}
-.vs .side h4{font:700 15px Inter;margin-bottom:12px}
-.vs .bad h4{color:var(--rust)} .vs .good h4{color:var(--green-700)}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
 .pills span{font:600 13px Inter;padding:6px 11px;border-radius:999px}
-.bad .pills span{background:#fbe6dc;color:#9a3412}
 .good .pills span,.pills.good span{background:var(--green-100);color:var(--green-800)}
-.vs .arrow{display:grid;place-items:center;font:800 40px "Bricolage Grotesque";color:var(--gold)}
 .plant{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:start}
 .flowers{display:flex;gap:8px;margin:4px 0 16px;align-items:center;font-size:13px;color:var(--muted)}
 .flowers i{width:18px;height:18px;border-radius:50%;display:inline-block;border:2px solid #f2c14e}
@@ -177,6 +168,34 @@ footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px
 .qrbox .qr{margin-bottom:0}
 .legal{border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:13px;color:#8fa79a;padding:16px 24px}
 
+/* interactive */
+[data-tip]{cursor:pointer;-webkit-tap-highlight-color:transparent}
+[data-tip]:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+#tip{position:fixed;z-index:50;max-width:280px;background:var(--green-900);color:#fff;font:400 13.5px/1.5 Inter;padding:10px 13px;border-radius:10px;box-shadow:0 10px 30px -8px rgba(0,0,0,.4);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .15s,transform .15s}
+#tip.show{opacity:1;transform:none}
+#tip b{color:var(--gold);display:block;font:700 14px Inter;margin-bottom:2px}
+.hint{display:inline-flex;align-items:center;gap:6px;font:600 12px Inter;color:var(--rust);background:#fbe6dc;border-radius:999px;padding:4px 10px;margin-bottom:14px}
+.split div{transition:filter .2s,transform .2s}
+.split div:hover,.split div.on{filter:brightness(1.15)}
+.split-key div{border-radius:8px;padding:4px 6px;margin:0 -6px;transition:background .2s}
+.split-key div:hover,.split-key div.on{background:#fff}
+.gdm{transition:transform .2s}.gdm:hover{transform:translateY(-2px)}
+.pt{transition:r .15s;pointer-events:none}
+.hit{fill:transparent}
+.hit:hover + .pt,.hit:focus + .pt,.hit.on + .pt{r:9}
+.vline{stroke:var(--green-700);stroke-dasharray:3 3;opacity:0;transition:opacity .15s}
+.flowers i{cursor:pointer;transition:transform .2s}
+.flowers i:hover,.flowers i.on{transform:scale(1.35)}
+.pills.good span[data-tip]{transition:background .2s,color .2s}
+.pills.good span[data-tip]:hover,.pills.good span[data-tip].on{background:var(--green-800);color:#fff}
+.ev{transition:transform .2s,box-shadow .2s}
+.ev:hover,.ev.on{transform:translateY(-3px);box-shadow:0 12px 24px -10px rgba(15,46,34,.5)}
+.ev .more{max-height:0;overflow:hidden;transition:max-height .35s ease;font-size:13.5px;color:#e3ece6}
+.ev.on .more,.ev:hover .more{max-height:200px}
+.ev .more p{border-top:1px solid rgba(255,255,255,.15);padding-top:10px;margin-top:10px;color:#e3ece6}
+.bar{cursor:pointer}
+.bar:hover,.bar.on{filter:brightness(1.2)}
+.bg-text{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px}
 /* reveal */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
@@ -185,9 +204,7 @@ footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px
 @media (max-width:860px){
   section{padding:56px 0}
   .cards,.highlights,.bg-grid,.plant{grid-template-columns:1fr}
-  .icons{grid-template-columns:repeat(3,1fr)}
-  .vs{grid-template-columns:1fr}
-  .vs .arrow{transform:rotate(90deg)}
+  .bg-text{grid-template-columns:1fr}
   .gallery{grid-template-columns:1fr 1fr}
   .gallery img{height:auto;aspect-ratio:3/4}
   .refs{columns:1}
@@ -274,85 +291,81 @@ footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px
   <div class="wrap">
     <span class="eyebrow">Background</span>
     <h2>Why look to a garden plant?</h2>
+    <span class="hint">👆 Tap or hover over the graphics for details</span>
     <div class="bg-grid">
 
       <div class="panel rv">
         <h3><span class="n">1</span>What is diabetes?</h3>
-        <p class="sub">Chronically high blood glucose (hyperglycaemia).</p>
-        <div class="split" role="img" aria-label="Type 2 is about 90 to 95 percent of cases, Type 1 about 5 to 10 percent">
-          <div class="t2">Type 2 · 90–95%</div><div class="t1">T1</div>
+        <p class="sub">A group of metabolic disorders defined by abnormally high blood glucose, fasting or after meals (Alam et al., 2014).</p>
+        <div class="split" role="group" aria-label="Share of diabetes cases by type">
+          <div class="t2" data-k="t2" data-tip="<b>Type 2 diabetes · 90–95%</b>The most common form. Cells become less responsive to insulin (insulin resistance), sometimes with too little insulin produced. Our study targets this type." tabindex="0">Type 2 · 90–95%</div><div class="t1" data-k="t1" data-tip="<b>Type 1 diabetes · 5–10%</b>The body cannot produce enough insulin, so it must be replaced with insulin therapy. Usually seen in childhood." tabindex="0">T1</div>
         </div>
         <div class="split-key">
-          <div><b>Type 2</b><span>Cells stop responding to insulin</span></div>
-          <div><b>Type 1</b><span>Body can’t make enough insulin · 5–10%</span></div>
+          <div data-k="t2" data-tip="<b>Type 2 diabetes · 90–95%</b>The most common form. Cells become less responsive to insulin (insulin resistance), sometimes with too little insulin produced. Our study targets this type." tabindex="0"><b>Type 2</b><span>Cells stop responding to insulin</span></div>
+          <div data-k="t1" data-tip="<b>Type 1 diabetes · 5–10%</b>The body cannot produce enough insulin, so it must be replaced with insulin therapy. Usually seen in childhood." tabindex="0"><b>Type 1</b><span>Body can’t make enough insulin · 5–10%</span></div>
         </div>
-        <div class="gdm"><b>5–15%</b><span>of pregnancies develop <strong>gestational diabetes</strong>, raising later Type 2 risk</span></div>
+        <div class="gdm" data-tip="<b>Gestational diabetes (GDM)</b>Develops during pregnancy in women with no previous diabetes. Affects about 5–15% of pregnancies, and a considerable share of these women develop diabetes in the following years." tabindex="0"><b>5–15%</b><span>of pregnancies develop <strong>gestational diabetes</strong>, raising later Type 2 risk</span></div>
         <p class="cite">Deshmukh &amp; Jain, 2021; Alam et al., 2021</p>
       </div>
 
       <div class="panel trend rv">
         <h3><span class="n">2</span>A growing epidemic</h3>
         <p class="sub">People living with diabetes worldwide</p>
-        <svg viewBox="0 0 520 230" role="img" aria-label="Diabetes cases: 108 million in 1980, 422 million in 2014, projected 552 million by 2030">
+        <svg viewBox="0 0 520 230" role="img" aria-label="Diabetes cases: 108 million in 1980, 366 million in 2011, 422 million in 2014, projected 552 million by 2030">
           <g stroke="var(--line)" stroke-width="1"><line x1="40" y1="190" x2="505" y2="190"/><line x1="40" y1="136.7" x2="505" y2="136.7"/><line x1="40" y1="83.3" x2="505" y2="83.3"/><line x1="40" y1="30" x2="505" y2="30"/></g>
           <g font-size="11" text-anchor="end"><text x="34" y="194">0</text><text x="34" y="140">200M</text><text x="34" y="87">400M</text><text x="34" y="34">600M</text></g>
           <path d="M40 190 L40 161.2 L352.8 77.5 L352.8 190 Z" fill="var(--green-800)" opacity=".1"/>
           <polyline points="40,161.2 352.8,77.5" fill="none" stroke="var(--green-800)" stroke-width="3.5" stroke-linecap="round"/>
           <polyline points="325.2,92.4 500,42.8" fill="none" stroke="var(--rust)" stroke-width="3" stroke-dasharray="7 6"/>
-          <circle cx="40" cy="161.2" r="6" fill="var(--green-800)"/><circle cx="352.8" cy="77.5" r="6" fill="var(--green-800)"/>
-          <circle cx="325.2" cy="92.4" r="5" fill="#fff" stroke="var(--rust)" stroke-width="2.5"/><circle cx="500" cy="42.8" r="6" fill="var(--rust)"/>
+          <line class="vline" id="vline" x1="0" x2="0" y1="30" y2="190"/>
           <g font-family="Bricolage Grotesque" font-weight="800">
             <text x="52" y="183" font-size="17" style="fill:var(--green-800)">108M</text>
             <text x="338" y="66" font-size="17" text-anchor="end" style="fill:var(--green-800)">422M</text>
             <text x="500" y="28" font-size="17" text-anchor="end" style="fill:var(--rust)">552M?</text>
           </g>
           <g font-size="12" text-anchor="middle"><text x="40" y="210">1980</text><text x="325" y="210">2011</text><text x="360" y="224">2014</text><text x="500" y="210">2030</text></g>
+          <circle class="hit" cx="40" cy="161.2" r="20" data-x="40" data-tip="<b>1980 · 108 million</b>Adult prevalence: 4.7%. Recorded estimate (Alam et al., 2021)." tabindex="0"/><circle class="pt" cx="40" cy="161.2" r="6" fill="var(--green-800)"/>
+          <circle class="hit" cx="325.2" cy="92.4" r="18" data-x="325.2" data-tip="<b>2011 · 366 million</b>International Diabetes Federation estimate. Starting point of the IDF projection to 2030 (Alam et al., 2014)." tabindex="0"/><circle class="pt" cx="325.2" cy="92.4" r="5" fill="#fff" stroke="var(--rust)" stroke-width="2.5"/>
+          <circle class="hit" cx="352.8" cy="77.5" r="18" data-x="352.8" data-tip="<b>2014 · 422 million</b>Adult prevalence: 8.5%. Nearly 4× the 1980 count (Alam et al., 2021)." tabindex="0"/><circle class="pt" cx="352.8" cy="77.5" r="6" fill="var(--green-800)"/>
+          <circle class="hit" cx="500" cy="42.8" r="20" data-x="500" data-tip="<b>2030 · 552 million (projected)</b>IDF forecast made in 2011. A projection, not a recorded count (Alam et al., 2014)." tabindex="0"/><circle class="pt" cx="500" cy="42.8" r="6" fill="var(--rust)"/>
         </svg>
         <div class="prev"><span><svg width="22" height="4"><line x1="0" y1="2" x2="22" y2="2" stroke="#123d2d" stroke-width="3.5"/></svg> Recorded</span><span><svg width="22" height="4"><line x1="0" y1="2" x2="22" y2="2" stroke="#c2410c" stroke-width="3" stroke-dasharray="5 4"/></svg> IDF projection from 2011 (366M)</span></div>
         <div class="prev">Adult prevalence <b>4.7%</b> → <b>8.5%</b> <span>(1980 → 2014)</span></div>
       </div>
 
-      <div class="panel wide rv">
-        <h3><span class="n">3</span>Left uncontrolled, it damages the whole body</h3>
-        <div class="icons" style="margin-top:14px">
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>Heart disease</div>
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M9 4c-3 0-5 3-5 7s2 9 5 9 3-3 3-5-1.5-3-1.5-5S12 4 9 4z"/><path d="M15 4c3 0 5 3 5 7s-2 9-5 9"/></svg>Kidney failure</div>
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/><line x1="4" y1="4" x2="20" y2="20"/></svg>Blindness</div>
-          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 13l3-3"/><path d="M9 3h6"/></svg>Hypertension</div>
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v6"/><path d="M12 9l-5 5v6"/><path d="M12 9l5 5v6"/><path d="M12 9v11"/></svg>Nerve damage</div>
-        </div>
-        <p class="cite">Alam et al., 2021</p>
-      </div>
+    </div>
 
-      <div class="panel wide rv">
-        <h3><span class="n">4</span>Why look beyond conventional drugs?</h3>
-        <div class="vs" style="margin-top:14px">
-          <div class="side bad"><h4>Insulin &amp; oral drugs</h4><div class="pills"><span>Hypoglycaemia</span><span>Gut problems</span><span>Liver toxicity</span><span>Kidney strain</span><span>Heart risks</span><span>Often lifelong</span></div></div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div class="side good"><h4>Medicinal plant compounds</h4><div class="pills"><span>Antioxidant</span><span>Anti-inflammatory</span><span>Antidiabetic</span><span>Insulin secretion ↑</span><span>Insulin sensitivity ↑</span><span>Widely used in developing countries (WHO)</span></div></div>
-        </div>
-        <p class="cite">Deshmukh &amp; Jain, 2021; Dwivedi &amp; Pandey, 2020; Tran et al., 2020</p>
+    <div class="bg-text rv" style="margin:36px 0">
+      <div>
+        <p>The continued rise in diabetes is concerning because poorly controlled diabetes can contribute to serious long-term complications, including cardiovascular disease, renal failure, blindness, hypertension, and neuropathy (Alam et al., 2021).</p>
+        <p>Current treatments, insulin and oral hypoglycaemic agents, work by increasing insulin secretion, enhancing glucose uptake, or reducing gluconeogenesis. However, they may not fully restore long-term glucose homeostasis and can cause hypoglycaemia, gastrointestinal, liver, kidney and cardiovascular problems. Some require lifelong administration (Deshmukh &amp; Jain, 2021; Dwivedi &amp; Pandey, 2020).</p>
       </div>
+      <div>
+        <p>The World Health Organization estimates that many people in developing countries still rely on traditional, mostly plant-based, medicine. Medicinal plants contain secondary metabolites such as alkaloids, phenolics, steroids, lignans, carbohydrates and glycosides, with antioxidant, anti-inflammatory, antimicrobial, anticancer and antidiabetic activity. Several plant compounds show antihyperglycaemic effects and may influence insulin secretion and sensitivity (Tran et al., 2020).</p>
+      </div>
+    </div>
 
+    <div class="bg-grid">
       <div class="panel wide rv">
-        <h3><span class="n">5</span>Meet <em class="sp">&nbsp;Caesalpinia pulcherrima</em></h3>
+        <h3><span class="n">3</span>Meet <em class="sp">&nbsp;Caesalpinia pulcherrima</em></h3>
         <div class="plant" style="margin-top:10px">
           <div>
-            <p class="sub" style="margin-bottom:6px">Peacock flower / Barbados Pride, an ornamental shrub common across Indonesia.</p>
-            <div class="flowers"><i style="background:#f6c443"></i><i style="background:#f4a6b8"></i><i style="background:#f3efe4"></i><i style="background:#d6331f"></i><span>Flowers: yellow, pink, off-white, red</span></div>
+            <p class="sub" style="margin-bottom:6px">Peacock flower / Barbados Pride (<em>C. pulcherrima</em> L. Swartz), an ornamental shrub common across tropical regions, including Indonesia.</p>
+            <div class="flowers"><i style="background:#f6c443" data-tip="<b>Yellow variety</b>One of four flower colours of C. pulcherrima." tabindex="0"></i><i style="background:#f4a6b8" data-tip="<b>Pink variety</b>One of four flower colours of C. pulcherrima." tabindex="0"></i><i style="background:#f3efe4" data-tip="<b>Off-white variety</b>One of four flower colours of C. pulcherrima." tabindex="0"></i><i style="background:#d6331f" data-tip="<b>Red variety</b>Red petals with yellow margins, the most familiar form." tabindex="0"></i><span>Flowers: yellow, pink, off-white, red</span></div>
             <div class="chips-h">Compounds found</div>
-            <div class="pills good"><span>Flavones</span><span>Isoflavones</span><span>Flavanones</span><span>Chalcones</span><span>Glycosides</span><span>Rotenoids</span><span>Sterols</span><span>Tannins</span></div>
+            <div class="pills good"><span data-tip="<b>Flavones</b>A flavonoid class; plant pigments widely studied as antioxidants." tabindex="0">Flavones</span><span data-tip="<b>Isoflavones</b>Flavonoid class. Isoflavones from this plant inhibit aldose reductase (Kumar et al., 2015)." tabindex="0">Isoflavones</span><span data-tip="<b>Flavanones</b>A flavonoid class found in many plants, studied for antioxidant activity." tabindex="0">Flavanones</span><span data-tip="<b>Chalcones</b>Open-chain flavonoid precursors, studied for antioxidant and anti-inflammatory activity." tabindex="0">Chalcones</span><span data-tip="<b>Glycosides</b>Compounds with a sugar bound to another molecule; a common group of plant metabolites." tabindex="0">Glycosides</span><span data-tip="<b>Rotenoids</b>Isoflavonoid-related compounds found in legumes." tabindex="0">Rotenoids</span><span data-tip="<b>Sterols</b>Plant steroids, structurally similar to cholesterol." tabindex="0">Sterols</span><span data-tip="<b>Tannins</b>Polyphenols; polyphenols are linked to this plant’s antioxidant activity (Faloye et al., 2022)." tabindex="0">Tannins</span></div>
             <div class="chips-h">Reported activities</div>
-            <div class="pills good"><span>Antidiabetic</span><span>Antioxidant</span><span>Anti-inflammatory</span><span>Antimicrobial</span><span>Anticancer</span><span>Antiviral</span></div>
+            <div class="pills good"><span data-tip="<b>Antidiabetic</b>Reported in previous studies of C. pulcherrima (Sangeetha et al., 2025)." tabindex="0">Antidiabetic</span><span data-tip="<b>Antioxidant</b>Reported in previous studies of C. pulcherrima (Sangeetha et al., 2025)." tabindex="0">Antioxidant</span><span data-tip="<b>Anti-inflammatory</b>Reported in previous studies of C. pulcherrima (Sangeetha et al., 2025)." tabindex="0">Anti-inflammatory</span><span data-tip="<b>Antimicrobial</b>Reported in previous studies of C. pulcherrima (Sangeetha et al., 2025)." tabindex="0">Antimicrobial</span><span data-tip="<b>Anticancer</b>Reported in previous studies of C. pulcherrima (Sangeetha et al., 2025)." tabindex="0">Anticancer</span><span data-tip="<b>Antiviral</b>Reported in previous studies of C. pulcherrima (Sangeetha et al., 2025)." tabindex="0">Antiviral</span><span data-tip="<b>Analgesic</b>Reported in previous studies of C. pulcherrima (Sangeetha et al., 2025)." tabindex="0">Analgesic</span><span data-tip="<b>Anthelmintic</b>Reported in previous studies of C. pulcherrima (Sangeetha et al., 2025)." tabindex="0">Anthelmintic</span><span data-tip="<b>Antiulcer</b>Reported in previous studies of C. pulcherrima (Sangeetha et al., 2025)." tabindex="0">Antiulcer</span></div>
             <p class="cite">Sangeetha et al., 2025</p>
           </div>
           <div class="evid">
-            <div class="ev"><div class="display">45.63 µg/mL</div><p>IC<sub>50</sub> antioxidant activity of the extract, linked to polyphenols</p><small>Faloye et al., 2022</small></div>
-            <div class="ev"><div class="display">Aldose reductase ↓</div><p>Its isoflavones block an enzyme behind diabetic complications</p><small>Kumar et al., 2015</small></div>
+            <div class="ev" tabindex="0" data-toggle><div class="display">45.63 µg/mL</div><p>IC<sub>50</sub> antioxidant activity of the extract, linked to polyphenols</p>
+              <div class="more"><p><strong>What it means:</strong> IC<sub>50</sub> is the concentration needed to neutralise 50% of free radicals in the test. The lower the number, the stronger the antioxidant.</p></div><small>Faloye et al., 2022 · tap for more</small></div>
+            <div class="ev" tabindex="0" data-toggle><div class="display">Aldose reductase ↓</div><p>Its isoflavones block an enzyme behind diabetic complications</p>
+              <div class="more"><p><strong>Why it matters:</strong> aldose reductase turns excess glucose into sorbitol. Build-up of sorbitol in tissues is linked to diabetic damage in the eyes, nerves and kidneys.</p></div><small>Kumar et al., 2015 · tap for more</small></div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -413,13 +426,13 @@ footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px
 
     <div class="chart-card rv">
       <div class="chart-head">
-        <h3>Mean blood glucose (mg/dL)</h3>
+        <h3>Mean blood glucose (mg/dL) <span class="hint" style="margin:0 0 0 8px;vertical-align:middle">👆 tap a bar</span></h3>
         <div class="legend"><span><i style="background:var(--green-800)"></i>Extract</span><span><i style="background:var(--gold)"></i>Control</span></div>
       </div>
       <div class="chart" id="chart">
-        <div class="grp"><div class="bar" data-v="159.25"><span>159</span></div><div class="bar k" data-v="170.5"><span>171</span></div></div>
-        <div class="grp"><div class="bar" data-v="114.75"><span>115</span></div><div class="bar k" data-v="131"><span>131</span></div></div>
-        <div class="grp"><div class="bar" data-v="118.75"><span>119</span></div><div class="bar k" data-v="152.75"><span>153</span></div></div>
+        <div class="grp"><div class="bar" data-v="159.25" data-tip="<b>Extract · Before</b>159.25 mg/dL mean fasting glucose before treatment." tabindex="0"><span>159</span></div><div class="bar k" data-v="170.5" data-tip="<b>Control · Before</b>170.50 mg/dL mean fasting glucose before treatment." tabindex="0"><span>171</span></div></div>
+        <div class="grp"><div class="bar" data-v="114.75" data-tip="<b>Extract · After 7 days</b>114.75 mg/dL: down 44.5 mg/dL (−27.9%) from before." tabindex="0"><span>115</span></div><div class="bar k" data-v="131" data-tip="<b>Control · After 7 days</b>131.00 mg/dL: down 39.5 mg/dL (−23.2%) from before." tabindex="0"><span>131</span></div></div>
+        <div class="grp"><div class="bar" data-v="118.75" data-tip="<b>Extract · 7 days later (H+7)</b>118.75 mg/dL: only +4.0 mg/dL since treatment ended. Still 25.4% below the start." tabindex="0"><span>119</span></div><div class="bar k" data-v="152.75" data-tip="<b>Control · 7 days later (H+7)</b>152.75 mg/dL: rebounded +21.75 mg/dL. Only 10.4% below the start." tabindex="0"><span>153</span></div></div>
       </div>
       <div class="xl"><span>Before</span><span>After</span><span>7 days later</span></div>
     </div>
@@ -488,7 +501,27 @@ footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px
   <div class="legal">FTIC 2026 · Universitas Katolik Widya Mandala Surabaya</div>
 </footer>
 
+<div id="tip" role="tooltip"></div>
 <script>
+(()=>{const tip=document.getElementById('tip');let cur=null;
+const place=el=>{const r=el.getBoundingClientRect();tip.style.left='0px';tip.style.top='0px';tip.classList.add('show');
+ const tw=tip.offsetWidth,th=tip.offsetHeight;let x=r.left+r.width/2-tw/2;x=Math.max(8,Math.min(x,innerWidth-tw-8));
+ let y=r.top-th-10;if(y<70)y=r.bottom+10;tip.style.left=x+'px';tip.style.top=y+'px'};
+const vl=document.getElementById('vline');
+let at=0;const show=el=>{if(cur&&cur!==el)hide();if(cur!==el)at=Date.now();cur=el;tip.innerHTML=el.dataset.tip;place(el);
+ const k=el.dataset.k;if(k)document.querySelectorAll('[data-k="'+k+'"]').forEach(e=>e.classList.add('on'));else el.classList.add('on');
+ if(el.dataset.x&&vl){vl.setAttribute('x1',el.dataset.x);vl.setAttribute('x2',el.dataset.x);vl.style.opacity=1}};
+const hide=()=>{tip.classList.remove('show');document.querySelectorAll('[data-tip].on').forEach(e=>e.classList.remove('on'));if(vl)vl.style.opacity=0;cur=null};
+document.querySelectorAll('[data-tip]').forEach(el=>{
+ el.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')show(el)});
+ el.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')hide()});
+ el.addEventListener('focus',()=>show(el));el.addEventListener('blur',hide);
+ el.addEventListener('click',e=>{e.stopPropagation();cur===el&&e.pointerType!=='mouse'&&Date.now()-at>400?hide():show(el)});
+});
+document.querySelectorAll('[data-toggle]').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();el.classList.toggle('on')});
+ el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.classList.toggle('on')}})});
+document.addEventListener('click',hide);addEventListener('scroll',()=>cur&&place(cur),{passive:true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});})();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const chart=document.getElementById('chart');
