@@ -223,6 +223,18 @@ footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px
 .mech-card p{font-size:15px;color:var(--muted)}
 .note{margin-top:24px;background:var(--green-100);border-left:4px solid var(--green-800);border-radius:10px;padding:16px 18px;font-size:14.5px;color:var(--green-900)}
 .note a{color:var(--green-800);font-weight:600}
+/* 3d viewer */
+.mol{margin-top:36px;display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:center}
+.mol-stage{position:relative;height:440px;border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#1f4f3c 0%,#0b2219 70%);box-shadow:var(--shadow)}
+#mol3d{position:absolute;inset:0}
+.mol-stage .badge{position:absolute;left:16px;top:14px;z-index:2;font:600 12px Inter;color:#cfe0d6;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
+.mol-stage .help{position:absolute;right:16px;bottom:14px;z-index:2;font:400 12px Inter;color:#8fb3a0;pointer-events:none}
+.mol-stage .fallback{position:absolute;inset:0;display:grid;place-items:center;color:#cfe0d6;font-size:14px;text-align:center;padding:24px}
+.mol-ctrl{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 18px}
+.mol-ctrl button{border:1.5px solid var(--green-800);background:#fff;color:var(--green-800);font:600 13px Inter;padding:8px 12px;border-radius:9px;cursor:pointer;transition:.2s}
+.mol-ctrl button[aria-pressed="true"]{background:var(--green-800);color:#fff}
+.mol-key{display:grid;gap:8px;font-size:14px;color:var(--muted)}
+.mol-key span{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:8px;vertical-align:-2px}
 /* reveal */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
@@ -230,7 +242,8 @@ footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px
 
 @media (max-width:860px){
   section{padding:56px 0}
-  .cards,.highlights,.bg-grid,.plant,.mech-wrap{grid-template-columns:1fr}
+  .cards,.highlights,.bg-grid,.plant,.mech-wrap,.mol{grid-template-columns:1fr}
+  .mol-stage{height:340px}
   .bg-text{grid-template-columns:1fr}
   .gallery{grid-template-columns:1fr 1fr}
   .gallery img{height:auto;aspect-ratio:3/4}
@@ -430,7 +443,30 @@ footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px
       </div>
       <div class="mech-card" id="mechCard" data-tone="normal" aria-live="polite"></div>
     </div>
-    <div class="note rv"><strong>How this links to our study:</strong> the antioxidant compounds in <em>C. pulcherrima</em> may protect PDX-1 in this way. We measured blood glucose only, not PDX-1, so this is the proposed mechanism behind our results, based on Kaneto et al. (1999) and Kawamori et al. (2003).<br>A gene cannot be photographed, but the real 3D shape of PDX-1 bound to DNA has been solved by X-ray crystallography: <a href="https://www.rcsb.org/structure/2H1K" target="_blank" rel="noopener">view the PDX-1 structure (PDB 2H1K)</a>.</div>
+    <div class="mol rv">
+      <div class="mol-stage">
+        <div class="badge">PDX-1 bound to DNA · PDB 2H1K</div>
+        <div id="mol3d"><div class="fallback">Loading 3D model…</div></div>
+        <div class="help">Drag to rotate · scroll or pinch to zoom</div>
+      </div>
+      <div>
+        <h3>See PDX-1 in 3D</h3>
+        <p style="font-size:15px;color:var(--muted)">This is the real shape of the PDX-1 protein gripping DNA, measured by X-ray crystallography at 2.42 Å resolution. One of its helices slots into the DNA’s major groove, which is how PDX-1 recognises the insulin gene’s on-switch.</p>
+        <div class="mol-ctrl" role="group" aria-label="3D display style">
+          <button data-v="ribbon" aria-pressed="true">Ribbon</button>
+          <button data-v="surface" aria-pressed="false">Surface</button>
+          <button data-v="atoms" aria-pressed="false">Atoms</button>
+          <button data-v="spin" aria-pressed="true">Spin</button>
+        </div>
+        <div class="mol-key">
+          <div><span style="background:#f2c14e"></span>PDX-1 protein (homeodomain)</div>
+          <div><span style="background:#e8805a"></span>DNA strand 1</div>
+          <div><span style="background:#7fc4a0"></span>DNA strand 2</div>
+        </div>
+        <p class="cite">Structure: Longo, Guanga &amp; Rose (2007), RCSB PDB <a href="https://www.rcsb.org/structure/2H1K" target="_blank" rel="noopener">2H1K</a>. Hover or tap the model to identify parts.</p>
+      </div>
+    </div>
+    <div class="note rv"><strong>How this links to our study:</strong> the antioxidant compounds in <em>C. pulcherrima</em> may protect PDX-1 in this way. We measured blood glucose only, not PDX-1, so this is the proposed mechanism behind our results, based on Kaneto et al. (1999) and Kawamori et al. (2003).</div>
   </div>
 </section>
 
@@ -602,6 +638,31 @@ new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){chart.classList.add('
 const links=[...document.querySelectorAll('nav.sticky a')];
 const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
 addEventListener('scroll',()=>{let i=secs.findLastIndex(s=>s.getBoundingClientRect().top<120);links.forEach((l,j)=>l.classList.toggle('active',j===i))},{passive:true});
+</script>
+<script src="assets/3Dmol-min.js" defer></script>
+<script defer>
+addEventListener('DOMContentLoaded',()=>{const el=document.getElementById('mol3d');if(!el)return;
+ const start=()=>{if(!window.$3Dmol){el.innerHTML='<div class="fallback">3D viewer could not load.</div>';return}
+  fetch('assets/pdx1-2h1k.pdb').then(r=>r.text()).then(pdb=>{el.innerHTML='';
+   const v=$3Dmol.createViewer(el,{backgroundAlpha:0,antialias:true});const m=v.addModel(pdb,'pdb');
+   const P={chain:'A'},D1={chain:'C'},D2={chain:'D'};let mode='ribbon',spin=true,surf=null;
+   const nuc={DA:'adenine',DT:'thymine',DG:'guanine',DC:'cytosine'};
+   const draw=()=>{v.setStyle({},{});if(surf!==null){v.removeSurface(surf);surf=null}
+    if(mode==='ribbon'){v.setStyle(P,{cartoon:{color:'#f2c14e',thickness:.5,arrows:true}});v.setStyle(D1,{cartoon:{color:'#e8805a'},stick:{color:'#e8805a',radius:.15}});v.setStyle(D2,{cartoon:{color:'#7fc4a0'},stick:{color:'#7fc4a0',radius:.15}})}
+    if(mode==='surface'){v.setStyle(D1,{cartoon:{color:'#e8805a'},stick:{color:'#e8805a',radius:.15}});v.setStyle(D2,{cartoon:{color:'#7fc4a0'},stick:{color:'#7fc4a0',radius:.15}});v.setStyle(P,{cartoon:{color:'#f2c14e'}});surf=v.addSurface($3Dmol.SurfaceType.VDW,{color:'#f2c14e',opacity:.85},P)}
+    if(mode==='atoms'){v.setStyle(P,{sphere:{colorscheme:'Jmol',scale:.9}});v.setStyle(D1,{sphere:{color:'#e8805a',scale:.9}});v.setStyle(D2,{sphere:{color:'#7fc4a0',scale:.9}})}
+    v.render()};
+   let lbl=null;
+   v.setHoverable({},true,(a)=>{if(lbl)return;const isP=a.chain==='A';
+     lbl=v.addLabel(isP?('PDX-1 · '+a.resn+' '+a.resi):('DNA · '+(nuc[a.resn]||a.resn)),{position:a,backgroundColor:'#0f2e22',backgroundOpacity:.9,fontColor:'#fff',fontSize:13,borderRadius:6,inFront:true})},
+    ()=>{if(lbl){v.removeLabel(lbl);lbl=null}});
+   draw();v.zoomTo();v.zoom(1.15);v.spin('y',.6);
+   document.querySelectorAll('.mol-ctrl button').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.v==='spin'){spin=!spin;b.setAttribute('aria-pressed',spin);v.spin(spin?'y':false,.6);return}
+    mode=b.dataset.v;document.querySelectorAll('.mol-ctrl button:not([data-v="spin"])').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()}));
+   addEventListener('resize',()=>v.resize());
+  }).catch(()=>{el.innerHTML='<div class="fallback">3D model could not load. Open the page through the website link, not as a local file.</div>'})};
+ new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){o.disconnect();start()}},{rootMargin:'300px'}).observe(el);});
 </script>
 </body>
 </html>
