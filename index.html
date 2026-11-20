@@ -69,13 +69,48 @@ nav.sticky a:hover,nav.sticky a.active{color:#fff;border-color:var(--gold)}
 .kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .kw span{background:var(--green-100);color:var(--green-800);font:600 13px Inter;padding:6px 12px;border-radius:999px}
 
-/* background two-col */
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.types{display:grid;gap:12px;margin-top:20px}
-.type{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
-.type b{flex:none;font-family:"Bricolage Grotesque";background:var(--green-800);color:var(--gold);border-radius:8px;padding:6px 10px;font-size:15px}
-.type small{display:block;color:var(--muted);font-size:14px;line-height:1.5}
-
+/* background visual */
+.bg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.panel{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.panel.wide{grid-column:1/-1}
+.panel h3{display:flex;align-items:center;gap:10px;font-size:20px}
+.panel h3 .n{font:800 13px Inter;background:var(--green-800);color:var(--gold);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none}
+.panel .sub{color:var(--muted);font-size:15px;margin-bottom:16px}
+.split{display:flex;height:46px;border-radius:10px;overflow:hidden;font:700 14px Inter}
+.split div{display:flex;align-items:center;padding:0 12px;white-space:nowrap}
+.split .t2{flex:92.5;background:var(--green-800);color:#fff}
+.split .t1{flex:7.5;background:var(--gold);color:var(--green-900);justify-content:center;padding:0;min-width:46px}
+.split-key{display:grid;gap:8px;margin-top:14px;font-size:14px}
+.split-key div{display:flex;gap:10px;align-items:baseline}
+.split-key b{font-family:"Bricolage Grotesque";min-width:52px;color:var(--green-800)}
+.gdm{margin-top:14px;display:flex;gap:10px;align-items:center;background:#fff;border:1px dashed var(--rust);border-radius:10px;padding:10px 12px;font-size:14px}
+.gdm b{white-space:nowrap;color:var(--rust);font-family:"Bricolage Grotesque";font-size:18px}
+.trend > svg{width:100%;height:auto;display:block}
+.trend text{font-family:Inter;fill:var(--muted)}
+.prev{display:flex;gap:10px;margin-top:10px;font-size:14px;color:var(--muted);align-items:center;flex-wrap:wrap}
+.prev b{font-family:"Bricolage Grotesque";font-size:22px;color:var(--rust)}
+.icons{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.ic{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 8px;text-align:center;font:600 13px/1.3 Inter}
+.ic svg{width:38px;height:38px;margin:0 auto 8px;display:block;stroke:var(--rust);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch}
+.vs .side{background:#fff;border-radius:12px;padding:18px;border:1px solid var(--line)}
+.vs .side h4{font:700 15px Inter;margin-bottom:12px}
+.vs .bad h4{color:var(--rust)} .vs .good h4{color:var(--green-700)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills span{font:600 13px Inter;padding:6px 11px;border-radius:999px}
+.bad .pills span{background:#fbe6dc;color:#9a3412}
+.good .pills span,.pills.good span{background:var(--green-100);color:var(--green-800)}
+.vs .arrow{display:grid;place-items:center;font:800 40px "Bricolage Grotesque";color:var(--gold)}
+.plant{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:start}
+.flowers{display:flex;gap:8px;margin:4px 0 16px;align-items:center;font-size:13px;color:var(--muted)}
+.flowers i{width:18px;height:18px;border-radius:50%;display:inline-block;border:2px solid #f2c14e}
+.chips-h{font:700 12px Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.evid{display:grid;gap:12px}
+.ev{background:var(--green-800);color:#fff;border-radius:12px;padding:18px}
+.ev .display{font-size:30px;color:var(--gold);line-height:1.1}
+.ev p{font-size:14px;color:#cfe0d6;margin-top:6px}
+.ev small{display:block;font-size:12px;color:#8fb3a0;margin-top:6px}
+.cite{font-size:12px;color:var(--muted);margin-top:12px}
 /* innovation band */
 .band{background:var(--green-800);color:#fff;border-radius:18px;padding:40px;text-align:center;font-size:clamp(18px,2.2vw,22px);line-height:1.6}
 .band strong{color:var(--gold)}
@@ -149,7 +184,10 @@ footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px
 
 @media (max-width:860px){
   section{padding:56px 0}
-  .cols,.cards,.highlights{grid-template-columns:1fr}
+  .cards,.highlights,.bg-grid,.plant{grid-template-columns:1fr}
+  .icons{grid-template-columns:repeat(3,1fr)}
+  .vs{grid-template-columns:1fr}
+  .vs .arrow{transform:rotate(90deg)}
   .gallery{grid-template-columns:1fr 1fr}
   .gallery img{height:auto;aspect-ratio:3/4}
   .refs{columns:1}
@@ -236,21 +274,85 @@ footer .mentor{font-style:italic;color:#c4d6cb;font-size:15px;margin-bottom:56px
   <div class="wrap">
     <span class="eyebrow">Background</span>
     <h2>Why look to a garden plant?</h2>
-    <div class="cols">
-      <div class="rv">
-        <p>Diabetes mellitus (DM) is a heterogeneous group of metabolic disorders defined by abnormally high blood glucose, a state of hyperglycaemia in either a fasting or post-meal state (Alam et al., 2014).</p>
-        <div class="types">
-          <div class="type"><b>T1DM</b><div>The body cannot produce enough insulin and needs insulin replacement.<small>~5–10% of cases, typically seen in childhood.</small></div></div>
-          <div class="type"><b>T2DM</b><div>Mainly insulin resistance, sometimes with insufficient insulin production.<small>The most common form: ~90–95% of cases.</small></div></div>
-          <div class="type"><b>GDM</b><div>Develops during pregnancy in women with no prior diabetes.<small>Affects ~5–15% of pregnancies; raises later T2DM risk.</small></div></div>
+    <div class="bg-grid">
+
+      <div class="panel rv">
+        <h3><span class="n">1</span>What is diabetes?</h3>
+        <p class="sub">Chronically high blood glucose (hyperglycaemia).</p>
+        <div class="split" role="img" aria-label="Type 2 is about 90 to 95 percent of cases, Type 1 about 5 to 10 percent">
+          <div class="t2">Type 2 · 90–95%</div><div class="t1">T1</div>
         </div>
-        <p style="margin-top:20px">Adult prevalence rose from 4.7% to 8.5% between 1980 and 2014 (Alam et al., 2021), and the IDF projected 552 million cases by 2030 (Alam et al., 2014). Poorly controlled diabetes contributes to cardiovascular disease, renal failure, blindness, hypertension and neuropathy.</p>
+        <div class="split-key">
+          <div><b>Type 2</b><span>Cells stop responding to insulin</span></div>
+          <div><b>Type 1</b><span>Body can’t make enough insulin · 5–10%</span></div>
+        </div>
+        <div class="gdm"><b>5–15%</b><span>of pregnancies develop <strong>gestational diabetes</strong>, raising later Type 2 risk</span></div>
+        <p class="cite">Deshmukh &amp; Jain, 2021; Alam et al., 2021</p>
       </div>
-      <div class="rv">
-        <p>Current treatments, insulin and oral hypoglycaemic agents, work by raising insulin secretion, enhancing glucose uptake or reducing gluconeogenesis. They may not fully restore long-term glucose homeostasis, can cause hypoglycaemia, gastrointestinal, liver, kidney and cardiovascular problems, and some require lifelong use (Deshmukh &amp; Jain, 2021; Dwivedi &amp; Pandey, 2020).</p>
-        <p>The WHO estimates that many people in developing countries still rely on plant-based traditional medicine. Medicinal plants contain secondary metabolites, such as alkaloids, phenolics, steroids, lignans and glycosides, with antioxidant, anti-inflammatory and antidiabetic activity, including effects on insulin secretion and sensitivity (Tran et al., 2020).</p>
-        <p><strong><em>Caesalpinia pulcherrima</em> L. Swartz</strong>, the peacock flower or Barbados Pride, grows widely across tropical regions including Indonesia. It contains glycosides, rotenoids, isoflavones, flavanones, chalcones, flavanols, flavones, sterols and tannins, and has reported antimicrobial, anti-inflammatory, antioxidant, anticancer and antidiabetic activity (Sangeetha et al., 2025). Its extract has shown antioxidant activity with an IC<sub>50</sub> of 45.63 µg/mL (Faloye et al., 2022), and its isoflavones inhibit aldose reductase, an enzyme linked to diabetic complications (Kumar et al., 2015).</p>
+
+      <div class="panel trend rv">
+        <h3><span class="n">2</span>A growing epidemic</h3>
+        <p class="sub">People living with diabetes worldwide</p>
+        <svg viewBox="0 0 520 230" role="img" aria-label="Diabetes cases: 108 million in 1980, 422 million in 2014, projected 552 million by 2030">
+          <g stroke="var(--line)" stroke-width="1"><line x1="40" y1="190" x2="505" y2="190"/><line x1="40" y1="136.7" x2="505" y2="136.7"/><line x1="40" y1="83.3" x2="505" y2="83.3"/><line x1="40" y1="30" x2="505" y2="30"/></g>
+          <g font-size="11" text-anchor="end"><text x="34" y="194">0</text><text x="34" y="140">200M</text><text x="34" y="87">400M</text><text x="34" y="34">600M</text></g>
+          <path d="M40 190 L40 161.2 L352.8 77.5 L352.8 190 Z" fill="var(--green-800)" opacity=".1"/>
+          <polyline points="40,161.2 352.8,77.5" fill="none" stroke="var(--green-800)" stroke-width="3.5" stroke-linecap="round"/>
+          <polyline points="325.2,92.4 500,42.8" fill="none" stroke="var(--rust)" stroke-width="3" stroke-dasharray="7 6"/>
+          <circle cx="40" cy="161.2" r="6" fill="var(--green-800)"/><circle cx="352.8" cy="77.5" r="6" fill="var(--green-800)"/>
+          <circle cx="325.2" cy="92.4" r="5" fill="#fff" stroke="var(--rust)" stroke-width="2.5"/><circle cx="500" cy="42.8" r="6" fill="var(--rust)"/>
+          <g font-family="Bricolage Grotesque" font-weight="800">
+            <text x="52" y="183" font-size="17" style="fill:var(--green-800)">108M</text>
+            <text x="338" y="66" font-size="17" text-anchor="end" style="fill:var(--green-800)">422M</text>
+            <text x="500" y="28" font-size="17" text-anchor="end" style="fill:var(--rust)">552M?</text>
+          </g>
+          <g font-size="12" text-anchor="middle"><text x="40" y="210">1980</text><text x="325" y="210">2011</text><text x="360" y="224">2014</text><text x="500" y="210">2030</text></g>
+        </svg>
+        <div class="prev"><span><svg width="22" height="4"><line x1="0" y1="2" x2="22" y2="2" stroke="#123d2d" stroke-width="3.5"/></svg> Recorded</span><span><svg width="22" height="4"><line x1="0" y1="2" x2="22" y2="2" stroke="#c2410c" stroke-width="3" stroke-dasharray="5 4"/></svg> IDF projection from 2011 (366M)</span></div>
+        <div class="prev">Adult prevalence <b>4.7%</b> → <b>8.5%</b> <span>(1980 → 2014)</span></div>
       </div>
+
+      <div class="panel wide rv">
+        <h3><span class="n">3</span>Left uncontrolled, it damages the whole body</h3>
+        <div class="icons" style="margin-top:14px">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>Heart disease</div>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M9 4c-3 0-5 3-5 7s2 9 5 9 3-3 3-5-1.5-3-1.5-5S12 4 9 4z"/><path d="M15 4c3 0 5 3 5 7s-2 9-5 9"/></svg>Kidney failure</div>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/><line x1="4" y1="4" x2="20" y2="20"/></svg>Blindness</div>
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 13l3-3"/><path d="M9 3h6"/></svg>Hypertension</div>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v6"/><path d="M12 9l-5 5v6"/><path d="M12 9l5 5v6"/><path d="M12 9v11"/></svg>Nerve damage</div>
+        </div>
+        <p class="cite">Alam et al., 2021</p>
+      </div>
+
+      <div class="panel wide rv">
+        <h3><span class="n">4</span>Why look beyond conventional drugs?</h3>
+        <div class="vs" style="margin-top:14px">
+          <div class="side bad"><h4>Insulin &amp; oral drugs</h4><div class="pills"><span>Hypoglycaemia</span><span>Gut problems</span><span>Liver toxicity</span><span>Kidney strain</span><span>Heart risks</span><span>Often lifelong</span></div></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="side good"><h4>Medicinal plant compounds</h4><div class="pills"><span>Antioxidant</span><span>Anti-inflammatory</span><span>Antidiabetic</span><span>Insulin secretion ↑</span><span>Insulin sensitivity ↑</span><span>Widely used in developing countries (WHO)</span></div></div>
+        </div>
+        <p class="cite">Deshmukh &amp; Jain, 2021; Dwivedi &amp; Pandey, 2020; Tran et al., 2020</p>
+      </div>
+
+      <div class="panel wide rv">
+        <h3><span class="n">5</span>Meet <em class="sp">&nbsp;Caesalpinia pulcherrima</em></h3>
+        <div class="plant" style="margin-top:10px">
+          <div>
+            <p class="sub" style="margin-bottom:6px">Peacock flower / Barbados Pride, an ornamental shrub common across Indonesia.</p>
+            <div class="flowers"><i style="background:#f6c443"></i><i style="background:#f4a6b8"></i><i style="background:#f3efe4"></i><i style="background:#d6331f"></i><span>Flowers: yellow, pink, off-white, red</span></div>
+            <div class="chips-h">Compounds found</div>
+            <div class="pills good"><span>Flavones</span><span>Isoflavones</span><span>Flavanones</span><span>Chalcones</span><span>Glycosides</span><span>Rotenoids</span><span>Sterols</span><span>Tannins</span></div>
+            <div class="chips-h">Reported activities</div>
+            <div class="pills good"><span>Antidiabetic</span><span>Antioxidant</span><span>Anti-inflammatory</span><span>Antimicrobial</span><span>Anticancer</span><span>Antiviral</span></div>
+            <p class="cite">Sangeetha et al., 2025</p>
+          </div>
+          <div class="evid">
+            <div class="ev"><div class="display">45.63 µg/mL</div><p>IC<sub>50</sub> antioxidant activity of the extract, linked to polyphenols</p><small>Faloye et al., 2022</small></div>
+            <div class="ev"><div class="display">Aldose reductase ↓</div><p>Its isoflavones block an enzyme behind diabetic complications</p><small>Kumar et al., 2015</small></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
